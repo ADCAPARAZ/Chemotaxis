@@ -1,17 +1,22 @@
  //declare bacteria variables here  
- Bacteria bob; 
+ Bacteria[] bob; 
  void setup()   
  {     
  	//initialize bacteria variables here
  	size(1000,1000);
- 	bob = new Bacteria();
+ 	bob = new Bacteria[100];
+ 	for(int i = 0; i < bob.length; i++){
+ 		bob[i] = new Bacteria();
+ 	}
  }   
  void draw()   
  {    
- 	background(255);
- 	bob.walk();
- 	bob.show();
- }  
+ 	background(100);
+ 	for(int i = 0; i < bob.length; i++){
+ 		bob[i].walk();
+ 		bob[i].show();
+ 	}
+ }
  class Bacteria    
  {     
  	int myX, myY, hue;
@@ -24,8 +29,17 @@
  	}
  	void walk()
  	{
- 		myX = (int) (Math.random() * 1000);
- 		myY = (int) (Math.random() * 1000);
+ 		if (mouseX > myX){
+ 			myX = myX + (int) (Math.random() * 10) - 1;
+ 		} else {
+ 			myX = myX + (int) (Math.random() * 10) - 10;
+ 		}
+
+ 		if(mouseY > myY){
+ 			myY = myY + (int) (Math.random() * 10) - 1;
+ 		} else {
+ 			myY = myY + (int) (Math.random() * 10) - 10;
+ 		}
  	}
  	void show()
  	{
